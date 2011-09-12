@@ -22,6 +22,9 @@ function Get-WebFile {
    )
    
    $req = [System.Net.HttpWebRequest]::Create($url);
+   $proxy = [System.Net.WebRequest]::DefaultWebProxy;
+   $req.Proxy.Credentials = [System.Net.CredentialCache]::DefaultCredentials;
+   $req.Proxy = $proxy;
    $res = $req.GetResponse();
  
    if($fileName -and !(Split-Path $fileName)) {
