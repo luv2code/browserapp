@@ -1,5 +1,5 @@
 var base_dir = process.argv[2];
-
+var port = process.argv[3];
 
 var util = require("util"),
     http = require("http"),
@@ -28,6 +28,6 @@ http.createServer(function(request, response) {
     		response.end(file, "binary");
     	});
     });
-}).listen(8080);
+}).listen(port);
 
 util.puts("Server running at http://localhost:8080/");

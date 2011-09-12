@@ -5,6 +5,7 @@ properties {
 	#$sln_file = "$base_dir\Rhino.Mocks-vs2008.sln" 
 	$version = "0.0.0.0"
 	$build_dir = ("$base_dir\build\v" + $version)
+	$webserver_port = 34535
 	#$tools_dir = "$base_dir\Tools"
 	#$release_dir = "$base_dir\Release"
 }
@@ -32,13 +33,13 @@ task Build -depends DisplayVersion, GetVendorFiles, Test -Description "Minifies 
 }
 
 task Run -depends DisplayVersion, DisplayVersion, Build -Description "Starts a browser with the built version of the app" {
-	start ../vendor/node "../psake/server.js $build_dir"
-	start http://localhost:8080/index.html
+	start ../vendor/node "../psake/server.js $build_dir $webserver_port"
+	start http://localhost:$webserver_port/index.html
 }
 
 task Debug -depends DisplayVersion, GetVendorFiles -Description "Starts a browser with the unbuilt version of the app" {
-	start ../vendor/node "../psake/server.js $base_dir\src"
-	start http://localhost:8080/index.html
+	start ../vendor/node "../psake/server.js $base_dir\src $webserver_port"
+	start http://localhost:$webserver_port/index.html
 }
 
 task GetVendorFiles -Description "Downloads all the dependencies for building and testing" {
