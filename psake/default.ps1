@@ -28,8 +28,10 @@ task Build -depends DisplayVersion, GetVendorFiles, Test -Description "Minifies 
 	{
 		New-Item $base_dir\build\temp -type directory
 	}
+	#node doesn't make new directories on windows yet.  so this is a workaround
+	xcopy /T /E /Y $base_dir\src $base_dir\build\temp\
 	..\vendor\node ..\vendor\r.js -o app.build.js
-	Copy-Item $base_dir\build\temp\* -destination $build_dir -recurse
+	Copy-Item $base_dir\build\temp\* -destination $build_dir -recurse -force
 }
 
 task Run -depends DisplayVersion, DisplayVersion, Build -Description "Starts a browser with the built version of the app" {

@@ -13,7 +13,7 @@ describe("test application code", function () {
 		var rjs = require(requirejsPath);
 		rjs.config({ baseUrl : "../src" });
 		it("should have a log function", function () {
-			var test = rjs('./test');
+			var test = rjs('./pkg/test');
 			expect('function').toEqual(typeof test.log);
 		});
 	});
