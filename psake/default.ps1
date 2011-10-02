@@ -52,7 +52,7 @@ task GetVendorFiles -Description "Downloads all the dependencies for building an
 		New-Item ..\vendor\ -type directory
 		cd ..\vendor
 		Get-WebFile http://requirejs.org/docs/release/0.26.0/r.js ..\vendor\
-		Get-WebFile http://nodejs.org/dist/v0.5.6/node.exe ..\vendor\
+		Get-WebFile http://nodejs.org/dist/v0.5.8/node.exe ..\vendor\
 		cd ..\psake
 	}
 }
